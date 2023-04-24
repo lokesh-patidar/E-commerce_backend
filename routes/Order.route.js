@@ -1,7 +1,7 @@
 const express = require("express");
 const { AuthValidator } = require("../middlewares/Auth.middleware");
 const { OrderValidation } = require("../middlewares/OrderedValidated.middleware");
-const { ValidationForProducts } = require("../middlewares/ValidationForProducts");
+const { AdminValidation } = require("../middlewares/AdminValidation");
 const { OrdereModel } = require("../models/Ordered.model");
 const orderRouter = express.Router();
 
@@ -47,7 +47,7 @@ orderRouter.delete("/delete/:id", async (req, res) => {
 });
 
 // only admin can add many cart items
-orderRouter.use(ValidationForProducts);
+orderRouter.use(AdminValidation);
 
 // Delete all cart items
 

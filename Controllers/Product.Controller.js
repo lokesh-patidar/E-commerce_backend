@@ -73,7 +73,7 @@ exports.deleteProduct = async (req, res, next) => {
 
     await product.remove();
     return res.status(200).send({
-        sucess: true,
+        success: true,
         message: "Product deleted sucessfully!",
     });
 };
@@ -88,7 +88,7 @@ exports.getById = async (req, res, next) => {
     }
 
     return res.status(200).send({
-        sucess: true,
+        success: true,
         product,
         message: "Product by id!",
     });

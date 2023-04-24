@@ -1,7 +1,7 @@
 const express = require("express");
 const { AddToCartValidation } = require("../middlewares/AddToCartValidation.middleware");
 const { AuthValidator } = require("../middlewares/Auth.middleware");
-const { ValidationForProducts } = require("../middlewares/ValidationForProducts");
+const { AdminValidation } = require("../middlewares/AdminValidation");
 const { CartModel } = require("../models/Cart.model");
 const cartRouter = express.Router();
 
@@ -111,7 +111,7 @@ cartRouter.get("/getById/:id", async (req, res) => {
 
 
 // only admin can add many cart items
-cartRouter.use(ValidationForProducts);
+cartRouter.use(AdminValidation);
 
 // Insert many
 cartRouter.post("/addmany", async (req, res) => {

@@ -1,6 +1,6 @@
 const express = require("express");
 const { AuthValidator } = require("../middlewares/Auth.middleware");
-const { ValidationForProducts } = require("../middlewares/ValidationForProducts");
+const {AdminValidation } = require("../middlewares/AdminValidation");
 const { getAllProducts, CreateProduct, deleteProduct, getById, CreateManyProducts, ClearAllProducts } = require("../Controllers/Product.Controller");
 const productRouter = express.Router();
 
@@ -9,10 +9,10 @@ productRouter.post("/", CreateProduct);
 productRouter.delete("/:id", deleteProduct);
 productRouter.get("/:id", getById);
 
-// // validate users can do these operations only
-// productRouter.use(AuthValidator);
-// // Validation these operation could only be done by admin only
-// productRouter.use(ValidationForProducts);
+// validate users can do these operations only
+productRouter.use(AuthValidator);
+// Validation these operation could only be done by admin only
+productRouter.use(AdminValidation);
 
 productRouter.post("/addmany", CreateManyProducts);
 // productRouter.delete("/clearall", ClearAllProducts);
