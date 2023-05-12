@@ -2,6 +2,7 @@ const express = require("express");
 const { AuthValidator } = require("../middlewares/Auth.middleware");
 const {AdminValidation } = require("../middlewares/AdminValidation");
 const { getAllProducts, CreateProduct, deleteProduct, getById, CreateManyProducts, ClearAllProducts } = require("../Controllers/Product.Controller");
+const { ProductModel } = require("../models/Products.model");
 const productRouter = express.Router();
 
 productRouter.get("/", getAllProducts);
@@ -83,15 +84,15 @@ productRouter.post("/addmany", CreateManyProducts);
 // });
 
 // 
-// productRouter.delete("/deletemany", async (req, res) => {
-  // try {
-  //   await ProductModel.deleteMany();
-  //   res.send({ Message: "All Products deleted!" });
-  // } catch (err) {
-  //   console.log(err);
-  //   res.send({ Message: "All products can not be deleted!" });
-  // }
-// });
+productRouter.delete("/deletemany", async (req, res) => {
+  try {
+    await ProductModel.deleteMany();
+    res.send({ Message: "All Products deleted!" });
+  } catch (err) {
+    console.log(err);
+    res.send({ Message: "All products can not be deleted!" });
+  }
+});
 
 // productRouter.post("/add", async (req, res) => {
 //   const payload = req.body;
